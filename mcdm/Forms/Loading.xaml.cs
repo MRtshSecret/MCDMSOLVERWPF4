@@ -20,8 +20,11 @@ namespace mcdm.Forms
     /// </summary>
     public partial class Loading : Window
     {
+
+        //dasdasdahdgkgdakshdgajsghdagd
         public Loading()
         {
+            int i = 0;
             InitializeComponent();
         }
 
