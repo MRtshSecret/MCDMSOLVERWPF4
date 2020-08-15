@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcdm", "mcdm\mcdm.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plgTopsis", "plgTopsis\plgTopsis.csproj", "{D7102055-C456-452B-AA6E-80D2E2E4FAAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectMainProp", "ProjectMainProp\ProjectMainProp.csproj", "{BF476CDC-F19A-474B-B733-E94556DC8599}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D7102055-C456-452B-AA6E-80D2E2E4FAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7102055-C456-452B-AA6E-80D2E2E4FAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7102055-C456-452B-AA6E-80D2E2E4FAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF476CDC-F19A-474B-B733-E94556DC8599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF476CDC-F19A-474B-B733-E94556DC8599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF476CDC-F19A-474B-B733-E94556DC8599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF476CDC-F19A-474B-B733-E94556DC8599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

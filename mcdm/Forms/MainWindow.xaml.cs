@@ -28,8 +28,6 @@ namespace mcdm
 
         public MainWindow()
         {
-            var pgload = new Forms.Loading("Login");
-            pgload.ShowDialog();
             newProject = new newProject(pnl_Main);
             Loaded += MyWindow_Loaded;
             InitializeComponent();

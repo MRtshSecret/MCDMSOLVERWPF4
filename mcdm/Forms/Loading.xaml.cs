@@ -1,5 +1,6 @@
 ﻿using mcdm.Controllers;
 using Newtonsoft.Json;
+using ProjectMainProp;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,8 @@ namespace mcdm.Forms
         int Hide = 0;
         string WTD;
         string KJG = "";
-        public Loading(string wtd)
+        public int HasAccess = 0;
+        public Loading(string wtd, string username = "", string password = "")
         {
             WTD = wtd;
             int i = 0;
@@ -46,30 +48,32 @@ namespace mcdm.Forms
             if (WTD == "Login")
             {
                 Console.WriteLine("========================MyWindow_Loaded===========================");
-
                 Console.WriteLine($"{ii} = " + KJG);
                 Console.WriteLine("========================MyWindow_Loaded===========================");
-
-                UserStruct sscs = JsonConvert.DeserializeObject<UserStruct>(File.ReadAllText("Struct.McdM"));
                 WebClient wc = new WebClient();
-                string urls = $"https://localhost:44306/CustomerSideUserApp/userAuth?_u={sscs.UserName}&_p={sscs.UserPassword}";
+                string urls = $"{ProjectProp.MasterUrl}/CustomerSideUserApp/userAuth?_u={username}&_p={password}";
                 KJG = wc.DownloadString(urls);
                 EncDec endc = new EncDec();
                 Requests re = JsonConvert.DeserializeObject<Requests>(KJG);
                 if (re.RequestEnc == "-1")
                 {
                     MessageBox.Show("User Not Found!");
-                    Application.Current.Shutdown();
+                    Hide = 1;
+                    HasAccess = 3;
+
                 }
                 else if (re.RequestEnc == "-2")
                 {
                     MessageBox.Show("Cannot Connect To The Server");
-                    Application.Current.Shutdown();
+                    Hide = 1;
+                    HasAccess = 2;
+
                 }
                 else if (re.Requestname == "OK")
                 {
                     UserStruct us = JsonConvert.DeserializeObject<UserStruct>(endc.DecryptText(re.RequestEnc));
                     File.WriteAllText("User.McdM", JsonConvert.SerializeObject(us));
+                    HasAccess = 1;
                     Hide = 1;
                 }
                 ii++;
@@ -95,6 +99,7 @@ namespace mcdm.Forms
         {
             if (Hide == 1)
             {
+                dispatcherTimer.Stop();
                 this.Close();
             }
             Console.WriteLine("========================dispatcherTimer_Tick===========================");
