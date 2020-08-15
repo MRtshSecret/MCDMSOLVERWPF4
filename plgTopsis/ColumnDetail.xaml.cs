@@ -41,14 +41,14 @@ namespace plgTopsis
 
         private void cmdUp_Click(object sender, RoutedEventArgs e)
         {
-            NumValue++;
+            NumValue = 1;
         }
-
         private void cmdDown_Click(object sender, RoutedEventArgs e)
         {
-            NumValue--;
+            NumValue = -1;
         }
 
+        private int numval = 0;
         private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtNum == null)
@@ -64,7 +64,7 @@ namespace plgTopsis
                 }
                 else if (_numValue == 0)
                 {
-                    txtNum.Text = "0";
+                    txtNum.Text = "1";
                 }
                 else
                 {
@@ -97,8 +97,8 @@ namespace plgTopsis
 
         private void txtWeight_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int _numValues = 0;
-            if (!int.TryParse(txtWeight.Text, out _numValues))
+            double _numValues = 0;
+            if (!double.TryParse(txtWeight.Text, out _numValues))
             {
                 txtWeight.Text = "0";
             }

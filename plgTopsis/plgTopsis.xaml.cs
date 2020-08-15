@@ -1,4 +1,5 @@
-﻿using System;
+﻿using plgTopsis.MainItems;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace plgTopsis
                 generated.Name = "row_" + i;
                 generated.Margin = new Thickness(20);
                 generated.HorizontalAlignment = HorizontalAlignment.Stretch;
+                generated.Tag = "AllRows";
                 pnlRowDetails.Children.Add(generated);
             }
         }
@@ -66,6 +68,7 @@ namespace plgTopsis
                 generated.Col = i;
                 generated.Name = "column_" + i;
                 generated.Margin = new Thickness(20);
+                generated.Tag = "AllColumns";
                 generated.HorizontalAlignment = HorizontalAlignment.Stretch;
                 pnlColDetails.Children.Add(generated);
             }
@@ -75,57 +78,82 @@ namespace plgTopsis
         #region Next Steps
         private void btnNextStep1_Click(object sender, RoutedEventArgs e)
         {
-            //Disable Other Tabs
-            if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
-                return; // No more tabs to show!
-
-            var currentTab = TabControlMain.SelectedItem as TabItem;
-            currentTab.IsEnabled = false;
-            var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
-            nextTab.IsEnabled = true;
-            TabControlMain.SelectedItem = nextTab;
-            //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
+            string tagName = "AllColumns";
+            var foundButton = pnlColDetails.Children.OfType<ColumnDetail>().Where(x => x.Tag.ToString() == tagName).ToList<ColumnDetail>();
+            CheckItemsCols cic = new CheckItemsCols(foundButton);
+            if (cic.WeightSum())
+            {
+                if (cic.ISAllNameFilled())
+                {
+                    //Disable Other Tabs
+                    if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
+                        return; // No more tabs to show!
+                    var currentTab = TabControlMain.SelectedItem as TabItem;
+                    currentTab.IsEnabled = false;
+                    var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
+                    nextTab.IsEnabled = true;
+                    TabControlMain.SelectedItem = nextTab;
+                    //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
+                }
+                else
+                {
+                    MessageBox.Show("All Name Fields Required!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sum of weights Should be  1.00");
+            }
         }
 
         private void btnNextStep2_Click(object sender, RoutedEventArgs e)
         {
-            dtStep3.Columns.Add("*");
-            foreach (ColumnDetail item in pnlColDetails.Children)
+            string tagName = "AllRows";
+            var foundButton = pnlRowDetails.Children.OfType<RowDetail>().Where(x => x.Tag.ToString() == tagName).ToList<RowDetail>();
+            CheckItemsRows cir = new CheckItemsRows(foundButton);
+            if (cir.ISAllNameFilled())
             {
-                //dtStep3.Columns.Add(item.txtBoxColName.Text);
-                dtStep3.Columns.Add(item.txtName.Text);
-                inputWeight.Add(Convert.ToDouble(item.txtWeight.Text));
-                inputSign.Add(item.NumValue);
-            }
+                dtStep3.Columns.Add("*");
+                foreach (ColumnDetail item in pnlColDetails.Children)
+                {
+                    //dtStep3.Columns.Add(item.txtBoxColName.Text);
+                    dtStep3.Columns.Add(item.txtName.Text);
+                    inputWeight.Add(Convert.ToDouble(item.txtWeight.Text));
+                    inputSign.Add(item.NumValue);
+                }
 
-            foreach (RowDetail item in pnlRowDetails.Children)
+                foreach (RowDetail item in pnlRowDetails.Children)
+                {
+                    DataRow newRow = dtStep3.NewRow();
+                    newRow[0] = item.txtName.Text;
+
+                    dtStep3.Rows.Add(newRow);
+                }
+                int aa = dgvStep3.Columns.Count;
+
+                dgvStep3.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dtStep3 });
+                for (int i = 0; i < dgvStep3.Items.Count; i++)
+                {
+                    //dtgStep3.Items[i].Cells[1].ReadOnly = true;
+                    //dtgStep3.Rows[i].Cells[1].Style.BackColor = Color.Gray;
+                }
+                dgvStep3.Items.Refresh();
+
+                //Disable Other Tabs
+                if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
+                    return; // No more tabs to show!
+
+                var currentTab = TabControlMain.SelectedItem as TabItem;
+                currentTab.IsEnabled = false;
+                var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
+                nextTab.IsEnabled = true;
+                TabControlMain.SelectedItem = nextTab;
+                //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
+            }
+            else
             {
-                DataRow newRow = dtStep3.NewRow();
-                newRow[0] = item.txtName.Text;
-
-                dtStep3.Rows.Add(newRow);
-
+                MessageBox.Show("All Name Field Is Required!");
             }
-            int aa = dgvStep3.Columns.Count;
-
-            dgvStep3.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dtStep3 });
-            for (int i = 0; i < dgvStep3.Items.Count; i++)
-            {
-                //dtgStep3.Items[i].Cells[1].ReadOnly = true;
-               //dtgStep3.Rows[i].Cells[1].Style.BackColor = Color.Gray;
-            }
-            dgvStep3.Items.Refresh();
-
-            //Disable Other Tabs
-            if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
-                return; // No more tabs to show!
-
-            var currentTab = TabControlMain.SelectedItem as TabItem;
-            currentTab.IsEnabled = false;
-            var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
-            nextTab.IsEnabled = true;
-            TabControlMain.SelectedItem = nextTab;
-            //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
         }
 
         private void btnNextStep3_Click(object sender, RoutedEventArgs e)
@@ -138,7 +166,6 @@ namespace plgTopsis
                 inputWeight.Add(Convert.ToDouble(item.txtWeight.Text));
                 inputSign.Add(item.NumValue);
             }
-
             foreach (RowDetail item in pnlRowDetails.Children)
             {
                 DataRow newRow = dtStep4.NewRow();
@@ -148,7 +175,6 @@ namespace plgTopsis
 
             }
             int aa = dgvStep4.Columns.Count;
-
             dgvStep4.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dtStep3 });
             for (int i = 0; i < dgvStep4.Items.Count; i++)
             {
@@ -156,7 +182,6 @@ namespace plgTopsis
                 //dtgStep3.Rows[i].Cells[1].Style.BackColor = Color.Gray;
             }
             dgvStep4.Items.Refresh();
-
             //Disable Other Tabs
             if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
                 return; // No more tabs to show!

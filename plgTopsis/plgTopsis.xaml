@@ -236,7 +236,7 @@
                     </ComboBox>
                     <ScrollViewer HorizontalAlignment="Stretch" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="pnlColDetails" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
-                            <local:ColumnDetail Margin="20" HorizontalAlignment="Stretch" />
+                            <local:ColumnDetail Margin="20" HorizontalAlignment="Stretch"  />
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

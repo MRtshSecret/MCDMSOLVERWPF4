@@ -31,7 +31,7 @@
                 </Setter>
             </Style>
             <!--Text Box Rounded-->
-            
+
             <!--Text Font Style-->
             <Style x:Key="font_style" TargetType="TextBlock">
                 <Setter Property="FontFamily"
@@ -132,31 +132,30 @@
         <Grid VerticalAlignment="Top" Height="115">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="10,0">
                 <StackPanel HorizontalAlignment="Stretch" Width="Auto" CanHorizontallyScroll="True" VerticalAlignment="Top" Orientation="Horizontal" Height="100">
-                    <Button Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10">
+                    <Button x:Name="btnTopsis" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnNewTopsis_Click">
                         <StackPanel Orientation="Vertical">
-                            <Image Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
-                            <TextBlock TextWrapping="Wrap" Text="Project Number 65" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
+                            <Image x:Name="imgTopsis" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
+                            <TextBlock TextWrapping="Wrap" Text="Topsis" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
                         </StackPanel>
                     </Button>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
-                    <Button Content="Object" Width="100" Margin="10,10,10,10"/>
+                    <Button x:Name="btnV1" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV1_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image x:Name="imgV1" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
+                            <TextBlock TextWrapping="Wrap" Text="SAW" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnV2" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV2_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image x:Name="imgV2" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
+                            <TextBlock TextWrapping="Wrap" Text="Vikor" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnV3" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV3_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image x:Name="imgV3" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
+                            <TextBlock TextWrapping="Wrap" Text="Regim" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
@@ -182,9 +181,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Text="N A M E:" Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="18" Style="{StaticResource font_style}"/>
-                <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Foreground="Black" Margin="10" TextWrapping="Wrap" FontSize="14" Padding="2,0,0,0" Text=""/>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Text="T E M P L A T E:" Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="18" Style="{StaticResource font_style}"/>
-                <ComboBox Grid.Row="2" Grid.Column="2" Width="auto" Margin="10" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <TextBox x:Name="txtprojectname" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Foreground="Black" Margin="10" TextWrapping="Wrap" FontSize="14" Padding="2,0,0,0" Text=""/>
+                <TextBlock Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Text="T E M P L A T E:" Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="18" Style="{StaticResource font_style}"/>
+                <ComboBox Grid.Row="2" Grid.Column="2" Width="auto" Margin="10" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Hidden" >
 
                 </ComboBox>
                 <Button Cursor="Hand" Background="DarkGray" x:Name="btnSubmit" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="D O N E" Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="3" Grid.Column="2" Click="btnSubmit_Click"/>

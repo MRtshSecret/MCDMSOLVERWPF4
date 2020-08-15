@@ -29,16 +29,67 @@ namespace mcdm
         {
             InitializeComponent();
             parentGrid = Gparent;
+            clear();
+
             //Code Zir Nemune Dadam Harchand Baladi
             //algWindow = new AlgorithmWindow(algoWindowTest);
         }
-
+        string WhichAlg = "";
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            // Inja Bayad panele mother az usercontrol algWindow Ro Ba PlgTopsis Ya Harchi Dg Por Koni!
-            parentGrid.Children.Clear();
-            plgTopsis.plgTopsisWindow Child = new plgTopsis.plgTopsisWindow();
-            parentGrid.Children.Add(Child);
+            if (!string.IsNullOrEmpty(txtprojectname.Text))
+            {
+                switch (WhichAlg)
+                {
+                    case "Topsis":
+                        parentGrid.Children.Clear();
+                        plgTopsis.plgTopsisWindow Child = new plgTopsis.plgTopsisWindow();
+                        parentGrid.Children.Add(Child);
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("ProjectName Required !");
+            }
+        }
+        void clear()
+        {
+            imgTopsis.Visibility = Visibility.Hidden;
+            imgV1.Visibility = Visibility.Hidden;
+            imgV2.Visibility = Visibility.Hidden;
+            imgV3.Visibility = Visibility.Hidden;
+        }
+        private void btnNewTopsis_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
+            WhichAlg = "Topsis";
+            imgTopsis.Visibility = Visibility.Visible;
+
+        }
+
+        private void btnV1_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
+            WhichAlg = "btnV1";
+            imgV1.Visibility = Visibility.Visible;
+        }
+
+        private void btnV2_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
+            WhichAlg = "btnV2";
+            imgV2.Visibility = Visibility.Visible;
+        }
+
+        private void btnV3_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
+            WhichAlg = "btnV3";
+            imgV3.Visibility = Visibility.Visible;
         }
     }
 }
