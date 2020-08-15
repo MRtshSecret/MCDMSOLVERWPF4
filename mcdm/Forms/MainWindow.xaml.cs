@@ -28,9 +28,10 @@ namespace mcdm
 
         public MainWindow()
         {
+            InitializeComponent();
+            pnl_Main.Children.Clear();
             newProject = new newProject(pnl_Main);
             Loaded += MyWindow_Loaded;
-            InitializeComponent();
         }
 
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)

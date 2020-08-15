@@ -19,7 +19,7 @@ namespace plgTopsis
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class plgTopsisWindow : Window
+    public partial class plgTopsisWindow : UserControl
     {
         int Columns, Rows;
         DataTable dtStep3 = new DataTable();

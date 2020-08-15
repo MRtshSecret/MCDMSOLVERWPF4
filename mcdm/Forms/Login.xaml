@@ -139,7 +139,7 @@
                          Background="DimGray"
                          Margin="10"
                          Grid.Column="1"
-                         Text="test"
+                         Text="09128152782"
                          VerticalContentAlignment="Center"
                          FontSize="20" FontFamily="/mcdm;component/Fonts/#Roboto"/>
             </Grid>
@@ -170,7 +170,7 @@
                          Cursor="IBeam"
                          VerticalContentAlignment="Center"
                          FontSize="20"
-                         Password="test" FontFamily="/mcdm;component/Fonts/#Roboto"/>
+                         Password="McdM1234" FontFamily="/mcdm;component/Fonts/#Roboto"/>
                 <Button x:Name="btnHidePassword"
                         Style="{StaticResource NOMOREHOVERBITCH}"
                         Grid.Column="2"

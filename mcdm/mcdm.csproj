@@ -273,6 +273,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\plgTopsis\plgTopsis.csproj">
+      <Project>{d7102055-c456-452b-aa6e-80d2e2e4faac}</Project>
+      <Name>plgTopsis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectMainProp\ProjectMainProp.csproj">
       <Project>{bf476cdc-f19a-474b-b733-e94556dc8599}</Project>
       <Name>ProjectMainProp</Name>

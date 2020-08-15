@@ -209,7 +209,7 @@
                     <RowDefinition Height="75"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid Name="pnl_Main" Background="Transparent" Grid.Row="1" Margin="65,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid Name="pnl_Main" Background="Transparent" Grid.Row="1" Margin="65,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
                 </Grid>
             </Grid>

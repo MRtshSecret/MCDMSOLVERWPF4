@@ -22,9 +22,20 @@ namespace mcdm.UserControls
     {
         //------------------------------------>>>>/  "algoWindow" Ro Migire Bad Poresh Kon!
 
-        public AlgorithmWindow(Window algoWindow)
+        public AlgorithmWindow(UserControl algoWindow)
         {
+
             InitializeComponent();
+            mother.Children.Clear();
+            this.mother.Children.Add(algoWindow);
         }
+
+
+
+
+
+
+
+
     }
 }

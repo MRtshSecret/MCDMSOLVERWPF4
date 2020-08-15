@@ -21,7 +21,7 @@ namespace mcdm
     /// </summary>
     public partial class newProject : UserControl
     {
-        Window algoWindowTest = new Window();
+        UserControl algoWindowTest = new UserControl();
         Grid parentGrid = new Grid();
         AlgorithmWindow algWindow;
 
@@ -30,14 +30,15 @@ namespace mcdm
             InitializeComponent();
             parentGrid = Gparent;
             //Code Zir Nemune Dadam Harchand Baladi
-            algWindow = new AlgorithmWindow(algoWindowTest);
+            //algWindow = new AlgorithmWindow(algoWindowTest);
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             // Inja Bayad panele mother az usercontrol algWindow Ro Ba PlgTopsis Ya Harchi Dg Por Koni!
             parentGrid.Children.Clear();
-            parentGrid.Children.Add(algWindow);
+            plgTopsis.plgTopsisWindow Child = new plgTopsis.plgTopsisWindow();
+            parentGrid.Children.Add(Child);
         }
     }
 }
