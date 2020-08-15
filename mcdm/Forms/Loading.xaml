@@ -58,12 +58,16 @@
     </Window.Resources>
 
     <Grid Background="Transparent">
-        <Image gif:ImageBehavior.AnimatedSource="/Assets/Loading/Panda.gif" Margin="229,64,226,124" />
-        
-        <TextBlock TextAlignment="Center" Text="L O A D I N G" Style="{StaticResource font_style}" Foreground="Black" Margin="0,269,0,99" Width="592"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Image gif:ImageBehavior.AnimatedSource="/Assets/Loading/Panda.gif" Margin="229,64,226,68" />
+
+        <TextBlock TextAlignment="Center" Text="L O A D I N G" Style="{StaticResource font_style}" Foreground="Black" Margin="0,273,0,46" Width="592"/>
 
 
 
-        
-        </Grid>
+
+    </Grid>
 </Window>

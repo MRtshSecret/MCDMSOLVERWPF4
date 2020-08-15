@@ -28,9 +28,18 @@ namespace mcdm
 
         public MainWindow()
         {
-            InitializeComponent();
+            var pgload = new Forms.Loading("Login");
+            pgload.ShowDialog();
             newProject = new newProject(pnl_Main);
+            Loaded += MyWindow_Loaded;
+            InitializeComponent();
         }
+
+        private void MyWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -86,7 +95,7 @@ namespace mcdm
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void MaximizeBtn_Click(object sender, RoutedEventArgs e)

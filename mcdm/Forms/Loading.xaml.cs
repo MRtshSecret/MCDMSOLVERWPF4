@@ -1,6 +1,12 @@
-﻿using System;
+﻿using mcdm.Controllers;
+using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,22 +28,81 @@ namespace mcdm.Forms
     {
 
         //dasdasdahdgkgdakshdgajsghdagd
-        public Loading()
+        int Hide = 0;
+        string WTD;
+        string KJG = "";
+        public Loading(string wtd)
         {
+            WTD = wtd;
             int i = 0;
+
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+            Console.WriteLine("========================MyWindow_Loaded===========================");
+            Console.WriteLine($"{ii} = " + KJG);
+            Console.WriteLine("========================MyWindow_Loaded===========================");
+
+            if (WTD == "Login")
+            {
+                Console.WriteLine("========================MyWindow_Loaded===========================");
+
+                Console.WriteLine($"{ii} = " + KJG);
+                Console.WriteLine("========================MyWindow_Loaded===========================");
+
+                UserStruct sscs = JsonConvert.DeserializeObject<UserStruct>(File.ReadAllText("Struct.McdM"));
+                WebClient wc = new WebClient();
+                string urls = $"https://localhost:44306/CustomerSideUserApp/userAuth?_u={sscs.UserName}&_p={sscs.UserPassword}";
+                KJG = wc.DownloadString(urls);
+                EncDec endc = new EncDec();
+                Requests re = JsonConvert.DeserializeObject<Requests>(KJG);
+                if (re.RequestEnc == "-1")
+                {
+                    MessageBox.Show("User Not Found!");
+                    Application.Current.Shutdown();
+                }
+                else if (re.RequestEnc == "-2")
+                {
+                    MessageBox.Show("Cannot Connect To The Server");
+                    Application.Current.Shutdown();
+                }
+                else if (re.Requestname == "OK")
+                {
+                    UserStruct us = JsonConvert.DeserializeObject<UserStruct>(endc.DecryptText(re.RequestEnc));
+                    File.WriteAllText("User.McdM", JsonConvert.SerializeObject(us));
+                    Hide = 1;
+                }
+                ii++;
+                Console.WriteLine("========================MyWindow_Loaded===========================");
+                Console.WriteLine($"{ii} = " + KJG);
+                Console.WriteLine("========================MyWindow_Loaded===========================");
+
+            }
             InitializeComponent();
         }
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        private void MyWindow_Loaded(object sender, RoutedEventArgs e)
+        {
 
-        DispatcherTimer timer = new DispatcherTimer();
 
+        }
         private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void timer_tick(object sender, EventArgs e)
+        int ii = 0;
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            if (Hide == 1)
+            {
+                this.Close();
+            }
+            Console.WriteLine("========================dispatcherTimer_Tick===========================");
 
+            Console.WriteLine($"{ii} = " + KJG);
+            Console.WriteLine("========================dispatcherTimer_Tick===========================");
+
+            ii++;
         }
     }
 }

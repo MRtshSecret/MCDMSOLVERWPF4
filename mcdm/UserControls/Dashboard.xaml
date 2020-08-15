@@ -127,7 +127,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel x:Name="leftPanel" Grid.Column="0" Orientation="Vertical" Margin="10">
                 <ScrollViewer Height="200" VerticalAlignment="Top" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10">
-                    <TextBlock xml:space="preserve" Height="auto" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,100,0" Background="Gray" FontSize="15" Style="{StaticResource font_style}">
+                    <TextBlock xml:space="preserve" Height="auto" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,100,0" Background="Gray" FontSize="15" Style="{StaticResource font_style}" Name="txt_UserNotes">
                         <TextBlock.Text>
                             Update Notes: 
         - Added Dashboard Page 

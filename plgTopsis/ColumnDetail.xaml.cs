@@ -56,8 +56,25 @@ namespace plgTopsis
                 return;
             }
 
-            if (!int.TryParse(txtNum.Text, out _numValue))
-                txtNum.Text = _numValue.ToString();
+            if (int.TryParse(txtNum.Text, out _numValue))
+            {
+                if (_numValue > 0)
+                {
+                    txtNum.Text = "1";
+                }
+                else if (_numValue == 0)
+                {
+                    txtNum.Text = "0";
+                }
+                else
+                {
+                    txtNum.Text = "-1";
+                }
+            }
+            else
+            {
+                txtNum.Text = "0";
+            }
         }
 
         private void txtWeight_LostFocus(object sender, RoutedEventArgs e)
@@ -75,6 +92,15 @@ namespace plgTopsis
             }
             else
             {
+            }
+        }
+
+        private void txtWeight_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int _numValues = 0;
+            if (!int.TryParse(txtWeight.Text, out _numValues))
+            {
+                txtWeight.Text = "0";
             }
         }
     }

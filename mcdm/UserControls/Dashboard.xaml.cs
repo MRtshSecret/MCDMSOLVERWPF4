@@ -1,5 +1,8 @@
-﻿using System;
+﻿using mcdm.Controllers;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +25,14 @@ namespace mcdm.UserControls
     {
         public Dashboard()
         {
+            string json = File.ReadAllText("User.McdM");
+            UserStruct StaticUserStruct = JsonConvert.DeserializeObject<UserStruct>(json);
+
+         
+
             InitializeComponent();
+            txt_UserNotes.Text = $"Name: {StaticUserStruct.UserFirstname}\nLastName: {StaticUserStruct.UserLastName}\nMoneyRemaining: {StaticUserStruct.MoneyRemains} Tooman\nRegDate: {StaticUserStruct.UserRegDate}";
+
         }
     }
 }
