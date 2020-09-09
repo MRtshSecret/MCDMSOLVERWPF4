@@ -115,5 +115,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiConnection\ApiConnection.csproj">
+      <Project>{0df529a8-3e58-4635-ae14-8b8c1f38ea95}</Project>
+      <Name>ApiConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

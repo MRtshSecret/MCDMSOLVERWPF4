@@ -8,7 +8,7 @@
         Background="Transparent" 
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
-             Foreground="White">
+             Foreground="White" >
     <UserControl.Resources>
         <ResourceDictionary>
             <!--Scroll Thumb-->
@@ -389,6 +389,8 @@
                 </DataGrid>
                 <Button Content="Previous" HorizontalAlignment="Left" Grid.Row="1" Margin="5" Width="75" Click="btnPreviousStep3_Click"/>
                 <Button Content="Next" HorizontalAlignment="Right" Grid.Row="1" Margin="5" Width="75" Click="btnNextStep3_Click"/>
+                <TextBox x:FieldModifier="public" x:Name="txtISchangeST2" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="20" Background="White" Margin="92,17,91,0" Height="23" Grid.Row="1" />
+                <TextBox x:FieldModifier="public" x:Name="txtISchangeST1" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="20" Background="White" Margin="92,17,91,0" Height="23" Grid.Row="1" />
             </Grid>
         </TabItem>
         <TabItem Header="Step 4" Background="DimGray" x:Name="step4tab">

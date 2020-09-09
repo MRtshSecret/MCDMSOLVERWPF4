@@ -144,13 +144,13 @@
                             <TextBlock TextWrapping="Wrap" Text="SAW" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnV2" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV2_Click">
+                    <Button Visibility="Hidden" x:Name="btnV2" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV2_Click">
                         <StackPanel Orientation="Vertical">
                             <Image x:Name="imgV2" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
                             <TextBlock TextWrapping="Wrap" Text="Vikor" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnV3" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV3_Click">
+                    <Button Visibility="Hidden" x:Name="btnV3" Cursor="Hand" Style="{StaticResource TabButton}" Width="100" Margin="10,10,10,10" Click="btnV3_Click">
                         <StackPanel Orientation="Vertical">
                             <Image x:Name="imgV3" Cursor="Hand" Source="/Assets/tick.png" Margin="0,5,0,0" Width="20" Height="20" Stretch="Fill" VerticalAlignment="Top"/>
                             <TextBlock TextWrapping="Wrap" Text="Regim" FontSize="11" Margin="0,5,0,0" Foreground="Black" Style="{StaticResource font_style}" Width="60" Height="30"/>

@@ -34,7 +34,6 @@ namespace plgRegim.MainItems
             }
 
         }
-
         public bool ISAllNameFilled()
         {
             bool results = true;
@@ -49,7 +48,6 @@ namespace plgRegim.MainItems
             return results;
         }
     }
-
     class CheckItemsRows
     {
         public CheckItemsRows(List<RowDetail> allRowDetails)
@@ -74,4 +72,10 @@ namespace plgRegim.MainItems
             return results;
         }
     }
+
+
+
+
+
 }
+

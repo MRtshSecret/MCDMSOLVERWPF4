@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectMainProp
+namespace UserSTRUCT
 {
-    public static class ProjectProp
+    class UserStruct
     {
-        public static string MasterUrl = "https://mcdmsolver.com";
+
 
     }
 }

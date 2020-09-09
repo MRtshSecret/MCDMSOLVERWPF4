@@ -1,9 +1,9 @@
-﻿<Application x:Class="plgTopsis.App"
+﻿<Application x:Class="plgSAW.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:plgTopsis"
+             xmlns:local="clr-namespace:plgSAW"
              StartupUri="plgSAW.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

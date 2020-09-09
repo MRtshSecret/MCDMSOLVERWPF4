@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace mcdm
 {
     /// <summary>
@@ -30,7 +31,6 @@ namespace mcdm
             InitializeComponent();
             parentGrid = Gparent;
             clear();
-
             //Code Zir Nemune Dadam Harchand Baladi
             //algWindow = new AlgorithmWindow(algoWindowTest);
         }
@@ -46,6 +46,22 @@ namespace mcdm
                         plgTopsis.plgTopsisWindow Child = new plgTopsis.plgTopsisWindow();
                         parentGrid.Children.Add(Child);
                         break;
+                    case "SAW":
+                        parentGrid.Children.Clear();
+                        plgSAW.plgSAWWindow Child3 = new plgSAW.plgSAWWindow();
+                        parentGrid.Children.Add(Child3);
+
+                        break;
+                    //case "Vikor":
+                    //    parentGrid.Children.Clear();
+                    //    plgVikor.plgVikorWindow Child2 = new plgVikor.plgVikorWindow();
+                    //    parentGrid.Children.Add(Child2);
+                    //    break;
+                    //case "Regim":
+                    //    parentGrid.Children.Clear();
+                    //    plgRegim.plgRegimWindow Child1 = new plgRegim.plgRegimWindow();
+                    //    parentGrid.Children.Add(Child1);
+                    //    break;
                     default:
 
                         break;
@@ -74,21 +90,21 @@ namespace mcdm
         private void btnV1_Click(object sender, RoutedEventArgs e)
         {
             clear();
-            WhichAlg = "btnV1";
+            WhichAlg = "SAW";
             imgV1.Visibility = Visibility.Visible;
         }
 
         private void btnV2_Click(object sender, RoutedEventArgs e)
         {
             clear();
-            WhichAlg = "btnV2";
+            WhichAlg = "Vikor";
             imgV2.Visibility = Visibility.Visible;
         }
 
         private void btnV3_Click(object sender, RoutedEventArgs e)
         {
             clear();
-            WhichAlg = "btnV3";
+            WhichAlg = "Regim";
             imgV3.Visibility = Visibility.Visible;
         }
     }

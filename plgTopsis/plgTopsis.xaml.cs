@@ -25,7 +25,7 @@ namespace plgTopsis
         int Columns, Rows;
         DataTable dtStep3 = new DataTable();
         DataTable dtStep4 = new DataTable();
-        List<decimal> inputSign = new List<decimal>();
+        List<int> inputSign = new List<int>();
         List<double> inputWeight = new List<double>();
         public string foldername = "";
 
@@ -158,47 +158,54 @@ namespace plgTopsis
 
         private void btnNextStep3_Click(object sender, RoutedEventArgs e)
         {
-            dtStep4.Columns.Add("*");
-            foreach (ColumnDetail item in pnlColDetails.Children)
-            {
-                //dtStep3.Columns.Add(item.txtBoxColName.Text);
-                dtStep4.Columns.Add(item.txtName.Text);
-                inputWeight.Add(Convert.ToDouble(item.txtWeight.Text));
-                inputSign.Add(item.NumValue);
-            }
-            foreach (RowDetail item in pnlRowDetails.Children)
-            {
-                DataRow newRow = dtStep4.NewRow();
-                newRow[0] = item.txtName.Text;
+            //dtStep4.Columns.Add("*");
+            //foreach (ColumnDetail item in pnlColDetails.Children)
+            //{
+            //    //dtStep3.Columns.Add(item.txtBoxColName.Text);
+            //    dtStep4.Columns.Add(item.txtName.Text);
+            //    inputWeight.Add(Convert.ToDouble(item.txtWeight.Text));
+            //    inputSign.Add(item.NumValue);
+            //}
+            //foreach (RowDetail item in pnlRowDetails.Children)
+            //{
+            //    DataRow newRow = dtStep4.NewRow();
+            //    newRow[0] = item.txtName.Text;
+            //    dtStep4.Rows.Add(newRow);
+            //}
 
-                dtStep4.Rows.Add(newRow);
 
-            }
-            int aa = dgvStep4.Columns.Count;
-            dgvStep4.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dtStep3 });
-            for (int i = 0; i < dgvStep4.Items.Count; i++)
+            ApiConnection.Connections connections = new ApiConnection.Connections();
+            int ressss = connections.checkmoney(dtStep3.Columns.Count - 1, dtStep3.Rows.Count);
+            if (ressss == 1)
             {
-                //dtgStep3.Items[i].Cells[1].ReadOnly = true;
-                //dtgStep3.Rows[i].Cells[1].Style.BackColor = Color.Gray;
-            }
-            dgvStep4.Items.Refresh();
-            //Disable Other Tabs
-            if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
-                return; // No more tabs to show!
+                Calculate_Topsis(inputSign, inputWeight, dtStep3);
 
-            var currentTab = TabControlMain.SelectedItem as TabItem;
-            currentTab.IsEnabled = false;
-            var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
-            nextTab.IsEnabled = true;
-            TabControlMain.SelectedItem = nextTab;
-            //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
+                dgvStep4.Items.Refresh();
+                //Disable Other Tabs
+                if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
+                    return; // No more tabs to show!
+
+                var currentTab = TabControlMain.SelectedItem as TabItem;
+                currentTab.IsEnabled = false;
+                var nextTab = TabControlMain.Items[TabControlMain.SelectedIndex + 1] as TabItem;
+                nextTab.IsEnabled = true;
+                TabControlMain.SelectedItem = nextTab;
+                //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
+            }
+            else if (ressss == -1)
+            {
+                MessageBox.Show("Low money");
+
+            }
+            else
+            {
+                MessageBox.Show("Cannot connect to the internet");
+            }
         }
 
         private void btnNextStep4_Click(object sender, RoutedEventArgs e)
         {
             //--------------------------------------------------- Fill result text here
-            results.Text = "results will be shown here\nfor now we got to show to 10 for example...";
-
             //Disable Other Tabs
             if (TabControlMain.Items.Count - 1 == TabControlMain.SelectedIndex)
                 return; // No more tabs to show!
@@ -280,5 +287,110 @@ namespace plgTopsis
             //tabControl.SelectedIndex = tabControl.SelectedIndex + 1;
         }
         #endregion
+
+
+
+
+        public void Calculate_Topsis(List<int> sign1, List<double> weight1, DataTable dt1)
+        {
+
+            List<double> RadikalZigmaTavan2 = new List<double>();
+            for (int i = 1; i < dt1.Columns.Count; i++)
+            {
+                double ReslutOfColumn = 0;
+                for (int j = 0; j < dt1.Rows.Count ; j++)
+                {
+                    ReslutOfColumn += Math.Pow(Convert.ToDouble(dt1.Rows[j][i].ToString()), 2);
+                }
+                RadikalZigmaTavan2.Add(Math.Pow(ReslutOfColumn, 0.5));
+            }
+            for (int i = 1; i < dt1.Columns.Count; i++)
+            {
+                for (int j = 0; j < dt1.Rows.Count  ; j++)
+                {
+                    dt1.Rows[j][i] = ((Convert.ToDouble(dt1.Rows[j][i]) / RadikalZigmaTavan2[i-1]) * weight1[i-1]).ToString();
+                }
+            }
+            List<List<double>> Meeyaar = new List<List<double>>();
+            for (int i = 1; i < dt1.Columns.Count; i++)
+            {
+                List<double> MeyarOfColumn = new List<double>();
+                for (int j = 0; j < dt1.Rows.Count; j++)
+                {
+                    MeyarOfColumn.Add(Convert.ToDouble(dt1.Rows[j][i].ToString()));
+                }
+                Meeyaar.Add(MeyarOfColumn);
+            }
+            List<double> IdeAlMosbat = new List<double>();
+            for (int i = 0; i < Meeyaar.Count; i++)
+            {
+                if (sign1[i] == 1)
+                {
+                    IdeAlMosbat.Add(Meeyaar[i].Max());
+                }
+                else
+                {
+                    IdeAlMosbat.Add(Meeyaar[i].Min());
+                }
+            }
+            List<double> IdeAlManfi = new List<double>();
+            for (int i = 0; i < Meeyaar.Count; i++)
+            {
+                if (sign1[i] == 1)
+                {
+                    IdeAlManfi.Add(Meeyaar[i].Min());
+                }
+                else
+                {
+                    IdeAlManfi.Add(Meeyaar[i].Max());
+                }
+            }
+            //========================================================
+
+            List<double> SiPlus = new List<double>();
+            for (int j = 0; j < dt1.Rows.Count - 1; j++)
+            {
+                double ZigmaPluspow2 = 0;
+                for (int i = 1; i < dt1.Columns.Count; i++)
+                {
+                    double Results1 = Convert.ToDouble(dt1.Rows[j][i].ToString()) - IdeAlMosbat[i-1];
+                    ZigmaPluspow2 += Math.Pow(Results1, 2);
+                }
+                SiPlus.Add(Math.Pow(ZigmaPluspow2, 0.5));
+            }
+
+            List<double> Siminus = new List<double>();
+            for (int j = 0; j < dt1.Rows.Count - 1; j++)
+            {
+                double ZigmaPluspow2 = 0;
+                for (int i = 1; i < dt1.Columns.Count; i++)
+                {
+                    double Results1 = Convert.ToDouble(dt1.Rows[j][i].ToString()) - IdeAlManfi[i-1];
+                    ZigmaPluspow2 += Math.Pow(Results1, 2);
+                }
+                Siminus.Add(Math.Pow(ZigmaPluspow2, 0.5));
+            }
+            List<double> ResultsOfSiPlusandMinus = new List<double>();
+            for (int i = 0; i < Siminus.Count; i++)
+            {
+                ResultsOfSiPlusandMinus.Add((Siminus[i] / (Siminus[i] + SiPlus[i])));
+            }
+            ResultsOfSiPlusandMinus.Sort();
+            string AAA = "";
+            dgvStep4.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dt1w });
+
+            for (int i = 0; i < ResultsOfSiPlusandMinus.Count; i++)
+            {
+                AAA += "Topsis==> Num " + i.ToString() + " : " + ResultsOfSiPlusandMinus[i] + "\n";
+            }
+            results.Text = AAA;
+        }
+
+
+
+
+
+
     }
+
 }

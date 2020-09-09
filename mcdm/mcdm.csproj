@@ -273,9 +273,25 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApiConnection\ApiConnection.csproj">
+      <Project>{0df529a8-3e58-4635-ae14-8b8c1f38ea95}</Project>
+      <Name>ApiConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\plgRegim\plgRegim.csproj">
+      <Project>{b22a64d9-2087-4fab-ab3d-7f3b27a4d96f}</Project>
+      <Name>plgRegim</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\plgSAW\plgSAW.csproj">
+      <Project>{292b9d7d-4eb9-4edc-a26e-c889bdf319c4}</Project>
+      <Name>plgSAW</Name>
+    </ProjectReference>
     <ProjectReference Include="..\plgTopsis\plgTopsis.csproj">
       <Project>{d7102055-c456-452b-aa6e-80d2e2e4faac}</Project>
       <Name>plgTopsis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\plgVikor\plgVikor.csproj">
+      <Project>{f5c76cac-9856-4953-8ae7-63791f201e3f}</Project>
+      <Name>plgVikor</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectMainProp\ProjectMainProp.csproj">
       <Project>{bf476cdc-f19a-474b-b733-e94556dc8599}</Project>
