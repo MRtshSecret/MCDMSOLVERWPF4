@@ -377,7 +377,7 @@ namespace plgTopsis
             }
             ResultsOfSiPlusandMinus.Sort();
             string AAA = "";
-            dgvStep4.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dt1w });
+            dgvStep4.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = dt1 });
 
             for (int i = 0; i < ResultsOfSiPlusandMinus.Count; i++)
             {
